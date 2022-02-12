@@ -1,10 +1,12 @@
 <template>
-    <app-layout title="Profile">
+    <app-layout title="Kweeks">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Les derniers kweeks
             </h2>
         </template>
+
+        <kweek-create></kweek-create>
 
         <div class="py-12">
             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
@@ -27,16 +29,16 @@
 </template>
 
 <script>
-    import { defineComponent } from 'vue';
     import AppLayout from '@/Layouts/AppLayout.vue';
+    import KweekCreate from '@/Pages/Kweek/Create';
 
-
-    export default defineComponent({
+    export default {
         components: {
             AppLayout,
+            KweekCreate,
         },
         props: {
             kweeks: Array
         }
-    })
+    }
 </script>
