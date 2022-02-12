@@ -22,6 +22,9 @@
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </jet-nav-link>
+                                 <jet-nav-link :href="route('kweeks.index')" :active="route().current('tweets.index')">
+                                    Kweeks
+                                </jet-nav-link>
                             </div>
                         </div>
 
