@@ -58,4 +58,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function kweeks()
+    {
+        return $this->hasMany(Kweek::class)->orderBy('created_at', 'DESC');
+    }
 }
