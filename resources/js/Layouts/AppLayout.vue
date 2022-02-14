@@ -22,8 +22,11 @@
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </jet-nav-link>
-                                 <jet-nav-link :href="route('kweeks.index')" :active="route().current('tweets.index')">
+                                <jet-nav-link :href="route('kweeks.index')" :active="route().current('tweets.index')">
                                     Kweeks
+                                </jet-nav-link>
+                                <jet-nav-link :href="route('kweeks.followings')" :active="route().current('tweets.followings')">
+                                    Mes abonnements
                                 </jet-nav-link>
                             </div>
                         </div>

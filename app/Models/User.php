@@ -63,4 +63,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Kweek::class)->orderBy('created_at', 'DESC');
     }
+
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'followings', 'follower_id', 'following_id');
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followings', 'following_id', 'follower_id');
+    }
 }

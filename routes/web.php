@@ -34,4 +34,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
         return Inertia::render('Dashboard');
     })->name('dashboard');
     Route::post('kweeks', [KweekController::class, 'store'])->name('kweeks.store');
+
+    Route::get('/followings', [KweekController::class, 'followings'])->name('kweeks.followings');
+    Route::post('/follows/{user:id}', [KweekController::class, 'follows'])->name('kweeks.follows');
+    Route::post('/unfollows/{user:id}', [KweekController::class, 'unfollows'])->name('kweeks.unfollows');
 });

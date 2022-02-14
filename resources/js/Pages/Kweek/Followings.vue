@@ -2,15 +2,13 @@
     <app-layout title="Kweeks">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Les derniers kweeks
+                Mes abonnements
             </h2>
         </template>
 
-        <kweek-create></kweek-create>
-
         <div class="py-12">
             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-                <div v-for="kweek in kweeks" v-bind:key="kweek.id" class="flex items-center space-x-4 bg-white overflow-hidden rounded rounded-b-none border-b-2 border-gray-200 py-6 px-4">
+                <div v-for="kweek in followings" v-bind:key="kweek.id" class="flex items-center space-x-4 bg-white overflow-hidden rounded rounded-b-none border-b-2 border-gray-200 py-6 px-4">
                     <img class="h-16 w-16 object-cover rounded-full" :src="kweek.user.profile_photo_url">
                     <div class="flex flex-col w-2/3">
                         <div>
@@ -23,11 +21,9 @@
                             {{ kweek.content }}
                         </div>
                     </div>
-                    <div v-if="kweek.user.id !== $page.props.user.id">
-                        <Link v-if="!kweek.user.is_followed" as="button" method="POST" :href="`follows/${kweek.user.id}`" class="bg-white text-blue-500 cursor-pointer px-5 py-2 hover:text-white border border-blue-500 leading-tight hover:bg-blue-500 rounded-full font-extrabold transition-all duration-300" preserve-scroll>Suivre</Link>
-                        <Link v-else as="button" method="POST" :href="`unfollows/${kweek.user.id}`" class="w-40 bg-white text-blue-500 cursor-pointer px-5 py-2 hover:text-white border border-blue-500 leading-tight hover:bg-blue-500 rounded-full font-extrabold transition-all duration-300" preserve-scroll>Ne plus suivre</Link>
+                    <div class="w-40">
+                        <Link as="button" method="POST" :href="`unfollows/${kweek.user.id}`" class="bg-white text-blue-500 cursor-pointer px-5 py-2 hover:text-white border border-blue-500 leading-tight hover:bg-blue-500 rounded-full font-extrabold transition-all duration-300" preserve-scroll>Ne plus suivre</Link>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -36,17 +32,15 @@
 
 <script>
     import AppLayout from '@/Layouts/AppLayout.vue';
-    import KweekCreate from '@/Pages/Kweek/Create';
     import { Link } from '@inertiajs/inertia-vue3'
 
     export default {
         components: {
             AppLayout,
-            KweekCreate,
             Link,
         },
         props: {
-            kweeks: Array
+            followings: null
         }
     }
 </script>
