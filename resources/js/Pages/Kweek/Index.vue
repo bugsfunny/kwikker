@@ -14,7 +14,7 @@
                     <img class="h-16 w-16 object-cover rounded-full" :src="kweek.user.profile_photo_url">
                     <div class="flex flex-col w-2/3">
                         <div>
-                            <a class="text-sm text-gray-900 font-bold hover:text-blue-400" href="#">
+                            <a class="text-sm text-gray-900 font-bold hover:text-blue-400" :href="`/profile/${kweek.user.name}`">
                                 {{ kweek.user.name }}
                             </a>
                             <span class="font-thin text-gray-400">· le {{ kweek.created_at }}</span>
@@ -24,8 +24,8 @@
                         </div>
                     </div>
                     <div v-if="kweek.user.id !== $page.props.user.id">
-                        <Link v-if="!kweek.user.is_followed" as="button" method="POST" :href="`follows/${kweek.user.id}`" class="bg-white text-blue-500 cursor-pointer px-5 py-2 hover:text-white border border-blue-500 leading-tight hover:bg-blue-500 rounded-full font-extrabold transition-all duration-300" preserve-scroll>Suivre</Link>
-                        <Link v-else as="button" method="POST" :href="`unfollows/${kweek.user.id}`" class="w-40 bg-white text-blue-500 cursor-pointer px-5 py-2 hover:text-white border border-blue-500 leading-tight hover:bg-blue-500 rounded-full font-extrabold transition-all duration-300" preserve-scroll>Ne plus suivre</Link>
+                        <Link v-if="!kweek.user.is_followed" as="button" method="POST" :href="`/follows/${kweek.user.id}`" class="bg-white text-blue-500 cursor-pointer px-5 py-2 hover:text-white border border-blue-500 leading-tight hover:bg-blue-500 rounded-full font-extrabold transition-all duration-300" preserve-scroll>Suivre</Link>
+                        <Link v-else as="button" method="POST" :href="`/unfollows/${kweek.user.id}`" class="w-40 bg-white text-blue-500 cursor-pointer px-5 py-2 hover:text-white border border-blue-500 leading-tight hover:bg-blue-500 rounded-full font-extrabold transition-all duration-300" preserve-scroll>Ne plus suivre</Link>
                     </div>
                     
                 </div>

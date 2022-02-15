@@ -38,4 +38,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('/followings', [KweekController::class, 'followings'])->name('kweeks.followings');
     Route::post('/follows/{user:id}', [KweekController::class, 'follows'])->name('kweeks.follows');
     Route::post('/unfollows/{user:id}', [KweekController::class, 'unfollows'])->name('kweeks.unfollows');
+
+    Route::get('/profile/{user:name}', [KweekController::class, 'profile'])->name('kweeks.profile');
 });

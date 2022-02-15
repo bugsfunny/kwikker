@@ -19,6 +19,7 @@ class KweekController extends Controller
             ])
             ->withCasts(['is_followed' => 'boolean'])
         ])->orderBy('created_at', 'DESC')->get();
+        
         return Inertia::render('Kweek/Index', [
             'kweeks' => $kweeks,
         ]);
@@ -61,5 +62,24 @@ class KweekController extends Controller
     {
         auth()->user()->followings()->detach($user->id);
         return Redirect()->back();
+    }
+
+    public function profile(User $user)
+    {
+        $profileUser = $user->loadCount([
+            'followings as is_following_you' => 
+                fn($q) => $q->where('following_id', auth()->user()->id)
+                ->withCasts(['is_foolowing_you' => 'boolean']),
+            'followers as is_followed' => 
+                fn($q) => $q -> where('follower_id', auth()->user()->id)
+                ->withCasts(['is_followed' => 'boolean']),
+        ]);
+
+        $kweeks = $user->kweeks;
+
+        return Inertia::render('Kweek/Profile', [
+            'profileUser' => $profileUser,
+            'kweeks' => $kweeks,
+        ]);
     }
 }
